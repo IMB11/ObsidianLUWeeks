@@ -1,7 +1,7 @@
 {
     "id": "lancaster-university-week",
     "name": "Lancaster University Week Format",
-    "version": "2024.2025",
+    "version": "2024.2025+v2",
     "minAppVersion": "1.0.0",
     "description": "(2024-2025 Academic Year) Extends moment.js to provide a custom 'Lancaster University Week' value or 'VACATION' if not in term. Use 'LUW' in the Daily Note format to use!",
     "author": "IMB11",

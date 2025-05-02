@@ -8,9 +8,11 @@ const { Plugin } = require("obsidian");
 
 // Define date ranges for Lancaster University terms
 const luWeekBlocks = [
-  { start: "2023-10-06", end: "2023-12-15", startWeek: 1,  endWeek: 10 },
-  { start: "2024-01-12", end: "2024-03-22", startWeek: 11, endWeek: 21 },
-  { start: "2024-04-19", end: "2024-06-28", startWeek: 22, endWeek: 30 },
+  // 2024/25 Academic Year
+  { start: "2024-10-04", end: "2024-12-13", startWeek: 1,  endWeek: 10 },  // Michaelmas term
+  { start: "2025-01-10", end: "2025-03-21", startWeek: 11, endWeek: 20 },  // Lent term
+  { start: "2025-03-24", end: "2025-03-28", startWeek: 21, endWeek: 21 },  // Summer term (Week 1)
+  { start: "2025-04-28", end: "2025-06-27", startWeek: 22, endWeek: 30 },  // Summer term (Week 2 onwards)
 ];
 
 // We declare our custom moment function to add TypeScript-like hints inline
