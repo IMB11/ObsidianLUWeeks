@@ -6,6 +6,9 @@
 
 const { Plugin } = require("obsidian");
 
+// Save this for unloading the plugin
+const originalFormat = window.moment.fn.format;
+
 // Define date ranges for Lancaster University terms
 const luWeekBlocks = [
   // 2024/25 Academic Year
@@ -45,7 +48,6 @@ const enhanceMomentWithLUWeek = () => {
   // Patch moment's format() to replace "LUW" with the output of luWeek()
   // We do this only once, indicated by a custom flag _luwInjected.
   if (!window.moment.prototype._luwInjected) {
-    const originalFormat = window.moment.fn.format;
     window.moment.prototype.format = function (formatStr) {
       if (!formatStr) {
         return originalFormat.call(this, formatStr);
@@ -66,8 +68,15 @@ module.exports = class LUWeekFormatTokenPlugin extends Plugin {
     enhanceMomentWithLUWeek();
     console.log("LUWeekFormatTokenPlugin (CommonJS) loaded!");
   }
-
+  
   onunload() {
+    if (window.moment.prototype._luwInjected) {
+      window.moment.prototype.format = originalFormat;
+      
+      delete window.moment.prototype._luwInjected;
+      delete window.moment.prototype.luWeek;
+    }
+
     console.log("LUWeekFormatTokenPlugin (CommonJS) unloaded.");
   }
 };
